@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bruno Placas - Ar Condicionado</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="cabecalho-arredondado">
+    <div class="logo-container">
+      <img src="imgs/logo-bruno-IDEAL-COLOR.png" alt="Logo Bruno Placas" class="logo-img">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="geladeiras.html">Geladeiras</a></li>
+        <li><a href="arcondicionado.html">Ar Condicionado</a></li>
+        <li><a href="lavaeseca.html">Lava e Seca</a></li>
+        <li><a href="maqlavar.html">Máquina de Lavar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2 class="titulo-categoria">Placas para Ar Condicionado</h2>
+
+    <div style="text-align: center; margin-bottom: 20px;">
+      <label for="filtroMarca">Filtrar por marca:</label>
+      <select id="filtroMarca" onchange="filtrarPlacas()">
+        <option value="todos">Todos</option>
+        <option value="samsung">Samsung</option>
+        <option value="electrolux">Electrolux</option>
+        <option value="lg">LG</option>
+      </select>
+
+      <label for="filtroTipo" style="margin-left: 20px;">Filtrar por tipo:</label>
+      <select id="filtroTipo" onchange="filtrarPlacas()">
+        <option value="todos">Todos</option>
+        <option value="inverter">Inverter</option>
+        <option value="hw">HW</option>
+      </select>
+    </div>
+
+    <div class="placas-container" id="placasArCondicionado">
+      <div class="placa samsung inverter">
+        <a href="produto.html?produto=placa1">
+          <img src="imgs/arcond_samsung1.jpg" alt="Samsung">
+          <p>Placa Ar Samsung 9000 BTUs</p>
+          <p>Calcular Frete</p>
+        </a>
+      </div>
+      <div class="placa electrolux hw">
+        <a href="produto.html?produto=placa2">
+          <img src="imgs/arcond_electrolux1.jpg" alt="Electrolux">
+          <p>Display Ar Electrolux EcoTurbo</p>
+          <p>Calcular Frete</p>
+        </a>
+      </div>
+      <div class="placa lg hw">
+        <a href="produto.html?produto=placa3">
+          <img src="imgs/arcond_lg1.jpg" alt="LG">
+          <p>Placa Ar LG Dual Inverter</p>
+          <p>Calcular Frete</p>
+        </a>
+      </div>
+      <!-- Adicione mais blocos com as classes corretas -->
+    </div>
+  </main>
+
+  <footer>
+    <p><strong>Endereços:</strong></p>
+    <p>Cascadura - Av. Ernani Cardoso 91, Cascadura - RJ</p>
+    <p>Engº Pedreira - Rua Itororó 22, Teófilo Cunha - RJ</p>
+    <p>&copy; 2025 Bruno Placas - Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    function filtrarPlacas() {
+      const marcaSelecionada = document.getElementById('filtroMarca').value;
+      const tipoSelecionado = document.getElementById('filtroTipo').value;
+      const placas = document.querySelectorAll('#placasArCondicionado .placa');
+
+      placas.forEach(placa => {
+        const temMarca = marcaSelecionada === 'todos' || placa.classList.contains(marcaSelecionada);
+        const temTipo = tipoSelecionado === 'todos' || placa.classList.contains(tipoSelecionado);
+
+        placa.style.display = temMarca && temTipo ? 'block' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

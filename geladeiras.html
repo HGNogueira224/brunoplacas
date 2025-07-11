@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bruno Placas - Categorias</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="cabecalho-arredondado">
+    <div class="logo-container">
+      <img src="imgs/logo-bruno-IDEAL-COLOR.png" alt="Logo Bruno Placas" class="logo-img">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="geladeiras.html">Geladeiras</a></li>
+        <li><a href="arcondicionado.html">Ar Condicionado</a></li>
+        <li><a href="lavaeseca.html">Lava e Seca</a></li>
+        <li><a href="maqlavar.html">Máquina de Lavar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2 class="titulo-categoria">Placas para Geladeiras</h2>
+
+    <div style="text-align: center; margin-bottom: 20px;">
+      <label for="filtroMarca">Filtrar por marca:</label>
+      <select id="filtroMarca" onchange="filtrarPlacas()">
+        <option value="todos">Todos</option>
+        <option value="samsung">Samsung</option>
+        <option value="electrolux">Electrolux</option>
+        <option value="ge">GE</option>
+        <option value="midea">Midea</option>
+      </select>
+    </div>
+
+    <div class="placas-container" id="placasgeladeiras">
+      <div class="placa ge">
+        <a href="produto.html?produto=placa38">
+          <img src="imgs/PlacaSidebySideGE.webp" alt="ge">
+          <p>Placa Side by Side GE</p>
+          <p>Calcular Frete</p>
+        </a>
+      </div>
+      <div class="placa electrolux">
+        <a href="produto.html?produto=placa39">
+          <img src="imgs/PlacaSidebySideElectrolux.webp" alt="Electrolux">
+          <p>Placa Side by Side Electrolux </p>
+          <p>Calcular Frete</p>
+        </a>
+      </div>
+      <div class="placa lg">
+        <a href="produto.html?produto=placa40">
+          <img src="imgs/PlacaSidebySideLG.webp" alt="LG">
+          <p>Placa Side by Side LG</p>
+          <p>Calcular Frete</p>
+        </a>
+      </div>
+      <div class="placa midea">
+        <a href="produto.html?produto=placa41">
+          <img src="imgs/PlacaSidebySideMidea.webp" alt="midea">
+          <p>Placa Side by Side Midea</p>
+          <p>Calcular Frete</p>
+        </a>
+      </div>
+      <div class="placa samsung">
+        <a href="produto.html?produto=placa42">
+          <img src="imgs/PlacaSideBySideSamsung.webp" alt="samsung">
+          <p>Placa Side By Side Samsung</p>
+          <p>Calcular Frete</p>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p><strong>Endereços:</strong></p>
+    <p>Cascadura - Av. Ernani Cardoso 91, Cascadura - RJ</p>
+    <p>Engº Pedreira - Rua Itororó 22, Teófilo Cunha - RJ</p>
+    <p>&copy; 2025 Bruno Placas - Todos os direitos reservados.</p>
+  </footer>
+
+<script>
+  function filtrarPlacas() {
+    const filtro = document.getElementById('filtroMarca').value;
+    const placas = document.querySelectorAll('#placasgeladeiras .placa');
+
+    placas.forEach(placa => {
+      if (filtro === 'todos') {
+        placa.style.display = 'block';
+      } else {
+        placa.style.display = placa.classList.contains(filtro) ? 'block' : 'none';
+      }
+    });
+  }
+</script>
+</body>
+</html>

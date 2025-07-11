@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bruno Placas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="cabecalho-arredondado">
+    <div class="logo-container">
+      <img src="imgs/logo-bruno-IDEAL-COLOR.png" alt="Logo Bruno Placas" class="logo-img">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html" onclick="mostrarAba('inicio')">Início</a></li>
+        <li><a href="geladeiras.html" onclick="mostrarAba('geladeiras')">Geladeiras</a></li>
+        <li><a href="arcondicionado.html" onclick="mostrarAba('arcondicionado')">Ar Condicionado</a></li>
+        <li><a href="lavaeseca.html" onclick="mostrarAba('lavaeseca')">Lava e Seca</a></li>
+        <li><a href="maqlavar.html" onclick="mostrarAba('maqlavar')">Máquina de Lavar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="aba ativa">
+      <h3>Categorias de Eletrodomésticos</h3>
+      <div class="galeria-itens">
+        <div class="item">
+          <a href="geladeiras.html" onclick="mostrarCategoria('geladeira')">
+            <img src="imgs/geladeira.jpg" alt="Geladeira" />
+            <p>Geladeiras</p>
+          </a>
+        </div>
+        <div class="item">
+          <a href="arcondicionado.html" onclick="mostrarCategoria('arcondicionado')">
+            <img src="imgs/Arcondicionado.png" alt="Ar Condicionado" />
+            <p>Ar Condicionado</p>
+          </a>
+        </div>
+        <div class="item">
+          <a href="lavaeseca.html" onclick="mostrarCategoria('lavaeseca')">
+            <img src="imgs/lavaeseca.jpg" alt="Lava e Seca" />
+            <p>Lava e Seca</p>
+          </a>
+        </div>
+        <div class="item">
+          <a href="maqlavar.html" onclick="mostrarCategoria('maqlavar')">
+            <img src="imgs/maqdelavar.jpg" alt="Máquina de Lavar" />
+            <p>Máquina de Lavar</p>
+          </a>
+        </div>
+      </div>
+
+      <h3>Nosso trabalho</h3>
+      <div class="fotos-trabalho">
+        <div class="item-trabalho">
+          <img src="imgs/soldatrabalho.jpg" alt="Reparo de placa" />
+          <p>Realizamos reparo na placa do seu eletrodoméstico com defeito.</p>
+        </div>
+        <div class="item-trabalho">
+          <img src="imgs/reparotrabalho.jpg" alt="Solda eletrônica" />
+          <p>Serviço de solda eletrônica profissional com ferramentas especializadas.</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin: 50px 0;">
+        <p style="font-size: 16px; margin-bottom: 8px;">🔽 Clique no ícone e solicite um orçamento pelo WhatsApp 🔽</p>
+        <a href="https://wa.me/5521973100133?text=Olá, gostaria de um orçamento." target="_blank">
+          <img src="imgs/whatsapp.png" alt="Fale conosco no WhatsApp" style="width: 60px; height: auto;">
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Endereços:</strong></p>
+    <p>Cascadura - Av. Ernani Cardoso 91, Cascadura - RJ</p>
+    <p>Engº Pedreira - Rua Itororó 22, Teófilo Cunha - RJ</p>
+    <p>&copy; 2025 Bruno Placas - Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    function mostrarCategoria(id) {
+      document.querySelectorAll('.categoria-placas').forEach(div => div.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+      document.getElementById('inicio').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

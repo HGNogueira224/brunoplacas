@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes da Placa</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="imgs/logo-bruno-IDEAL-COLOR.png" alt="Logo Bruno Placas" class="logo-img">
+    </div>
+    <h1>Detalhes do Produto</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html" onclick="mostrarAba('inicio')">Início</a></li>
+        <li><a href="geladeiras.html" onclick="mostrarAba('geladeiras')">Geladeiras</a></li>
+        <li><a href="arcondicionado.html" onclick="mostrarAba('arcondicionado')">Ar Condicionado</a></li>
+        <li><a href="lavaeseca.html" onclick="mostrarAba('lavaeseca')">Lava e Seca</a></li>
+        <li><a href="maqlavar.html" onclick="mostrarAba('maqlavar')">Máquina de Lavar</a></li>
+      </ul>
+      <select id="lojaSelector" class="estilo-seletor">
+        <option value="loja1">Cascadura - Av. Ernani Cardoso 91</option>
+        <option value="loja2">Engº Pedreira - Rua Itororó 22, Teófilo Cunha</option>
+      </select>
+    </nav>
+  </header>
+
+  <main>
+    <div class="detalhe-produto-container">
+      <div class="produto-imagem" id="produtoImagem"></div>
+
+      <div class="produto-info">
+        <div id="produtoTexto"></div>
+        <div id="botaoWhatsapp" style="margin-top: 20px;"></div>
+
+        <div class="frete-formulario compacto">
+          <h4>Calcular frete</h4>
+          <input type="text" id="cepDestino" placeholder="Digite seu CEP" />
+          <button onclick="calcularFreteCorreios()">Correios</button>
+          <button onclick="calcularFreteUber()">Uber</button>
+          <p style="font-size: 14px; margin-top: 5px;">
+            Endereço da loja: <strong id="enderecoUber"></strong>
+          </p>
+          <div id="resultadoFrete"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Conserto de Placas</p>
+  </footer>
+
+  <script>
+    const produtos = {
+      placa1: {
+        nome: "Placa Potência Samsung ww10J",
+        imagem: "imgs/potenciaww10J.webp"
+      },
+      placa2: {
+        nome: "Placa Potência Lavadora Samsung WF106",
+        imagem: "imgs/potenciaww106.webp"
+      },
+      placa3: {
+        nome: "Placa Potência Lavadora Samsung WW11K",
+        imagem: "imgs/potenciaww11k.webp"
+      },
+      placa4: {
+        nome: "Placa Potência Lava e seca Samsung WD11M",
+        imagem: "imgs/potenciawd11m.webp"
+      },
+      placa5: {
+        nome: "Placa Potência Lava e seca Samsung WD106",
+        imagem: "imgs/potenciawd106.webp"
+      },
+      placa6: {
+        nome: "Placa Potência Lava e seca Samsung WD136",
+        imagem: "imgs/potenciawd136.webp"
+      },
+      placa7: {
+        nome: "Placa Potência Lava e seca Samsung WD856",
+        imagem: "imgs/potenciawd856.jpg"
+      },
+      placa8: {
+        nome: "Placa Potência Lava e seca Samsung WD854",
+        imagem: "imgs/potenciawd854.webp"
+      },
+      placa9: {
+        nome: "Placa Potência Lava e Seca Samsung WD11J",
+        imagem: "imgs/potenciawd11j.webp"
+      },
+      placa10: {
+        nome: "Placa Potência Lava e Seca Samsung WD10N",
+        imagem: "imgs/potenciawd10n.webp"
+      },
+      placa11: {
+        nome: "Interface Lava e Seca Samsung WD11M",
+        imagem: "imgs/wd11m.webp"
+      },
+      placa12: {
+        nome: "Interface Lava e Seca Samsung WD106",
+        imagem: "imgs/wd106.webp"
+      },
+      placa13: {
+        nome: "Interface Lava e Seca Samsung WD136",
+        imagem: "imgs/wd136.webp"
+      },
+      placa14: {
+        nome: "Interface Lava e Seca Samsung WD856",
+        imagem: "imgs/wd856.webp"
+      },
+      placa15: {
+        nome: "Interface Lava e Seca Samsung WD854",
+        imagem: "imgs/wd854.webp"
+      },
+      placa16: {
+        nome: "Interface Lava e Seca Samsung WD11J",
+        imagem: "imgs/wd11j.webp"
+      },
+      placa17: {
+        nome: "Interface Lava e Seca Samsung WD10N",
+        imagem: "imgs/wd10N.webp"
+      },
+      placa18: {
+        nome: "Placa LG CV50/CV70/CV90/CV30",
+        imagem: "imgs/PlacaLGCV50CV70CV90CV30.webp"
+      },
+      placa19: {
+        nome: "Placa LG 11WP6/ LG11 EP6",
+        imagem: "imgs/PlacaLG11WP6LG11EP6.webp"
+      },
+      placa20: {
+        nome: "Placa LG 1403RD",
+        imagem: "imgs/PlacaLG1403RD.webp"
+      },
+      placa21: {
+        nome: "Placa LG 1412RD",
+        imagem: "imgs/placalgwd1412.webp"
+      },
+      placa22: {
+        nome: "Interface LG CV50/CV70/CV90/CV30",
+        imagem: "imgs/displayCV50CV70CV90CV30.webp"
+      },
+      placa23: {
+        nome: "Interface LG 11WP6/ LG11 EP6",
+        imagem: "imgs/display11WP6LG11EP6.webp"
+      },
+      placa24: {
+        nome: "Interface LG 1403RD",
+        imagem: "imgs/displayLG1403RD.webp"
+      },
+      placa25: {
+        nome: "Interface LG 1412RD",
+        imagem: "imgs/display1412RD.webp"
+      },
+      placa26: {
+        nome: "Placa Midea MF200",
+        imagem: "imgs/placaMF200.webp"
+      },
+      placa27: {
+        nome: "Placa/Interface Midea LSD11X2",
+        imagem: "imgs/placaLSD11X2.webp"
+      },
+      placa28: {
+        nome: "Placa Motor Midea LSD11X2",
+        imagem: "imgs/motorLSD11X2.webp"
+      },
+      placa29: {
+        nome: "Placa Motor Midea MF200",
+        imagem: "imgs/motorMF200.webp"
+      },
+      placa30: {
+        nome: "Placa/Interface Midea LSD11X1",
+        imagem: "imgs/placaLSD11x1.webp"
+      },
+      placa31: {
+        nome: "Placa Motor Midea LSD11X1",
+        imagem: "imgs/motorLSD11x1.webp"
+      },
+      placa32: {
+        nome: "Placa Electrolux LSE 09",
+        imagem: "imgs/PlacaLSE09.webp"
+      },
+      placa33: {
+        nome: "Placa Electrolux LSE 11",
+        imagem: "imgs/PlacaLSE11.jpg"
+      },
+      placa34: {
+        nome: "Placa Electrolux LSE 12",
+        imagem: "imgs/PlacaLSE12.webp"
+      },
+      placa35: {
+        nome: "Interface Electrolux LSE 09",
+        imagem: "imgs/displayLSE09.webp"
+      },
+      placa36: {
+        nome: "Interface Electrolux LSE 11",
+        imagem: "imgs/displayLSE11.webp"
+      },
+      placa37: {
+        nome: "Interface Electrolux LSE 12",
+        imagem: "imgs/displayLSE12.webp"
+      },
+      placa38: {
+        nome: "Interface Electrolux LSE 12",
+        imagem: "imgs/displayLSE12.webp"
+      },
+      placa39: {
+        nome: "Placa Side by Side Electrolux",
+        imagem: "imgs/PlacaSidebySideElectrolux.webp"
+      },
+      placa40: {
+        nome: "Placa Side by Side LG",
+        imagem: "imgs/PlacaSidebySideLG.webp"
+      },
+      placa41: {
+        nome: "Placa Side by Side Midea",
+        imagem: "imgs/PlacaSidebySideMidea.webp"
+      },
+      placa42: {
+        nome: "Placa Side By Side Samsung",
+        imagem: "imgs/PlacaSideBySideSamsung.webp"
+      },
+    };
+
+    function carregarProduto() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const produtoId = urlParams.get('produto');
+      const produto = produtos[produtoId];
+
+      if (produto) {
+        document.getElementById("produtoImagem").innerHTML = `
+          <img src="${produto.imagem}" alt="${produto.nome}" />
+        `;
+        document.getElementById("produtoTexto").innerHTML = `
+          <h2>${produto.nome}</h2>
+        `;
+
+        // Cria o botão do WhatsApp
+        const mensagem = encodeURIComponent(`Olá, gostaria de um orçamento para: ${produto.nome}`);
+        const link = `https://wa.me/5521973100133?text=${mensagem}`;
+        document.getElementById("botaoWhatsapp").innerHTML = `
+          <a href="${link}" target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background-color: #25D366; color: white; padding: 10px 16px; border-radius: 8px; text-decoration: none; font-weight: bold;">
+            <img src="imgs/whatsapp.png" alt="WhatsApp" style="width: 24px; height: 24px;">
+            Realizar orçamento no WhatsApp
+          </a>
+        `;
+      } else {
+        document.getElementById("produtoImagem").innerHTML = ``;
+        document.getElementById("produtoTexto").innerHTML = `<p>Produto não encontrado.</p>`;
+        document.getElementById("botaoWhatsapp").innerHTML = ``;
+      }
+    }
+
+    function calcularFreteCorreios() {
+      const cepDestino = document.getElementById("cepDestino").value.replace(/\D/g, "");
+      const lojaSelecionada = document.getElementById("lojaSelector").value;
+      const cepOrigem = lojaSelecionada === "loja1" ? "21310310" : "26450055";
+
+      if (!cepDestino || cepDestino.length !== 8) {
+        alert("Digite um CEP válido com 8 números.");
+        return;
+      }
+
+      const origemPrefix = parseInt(cepOrigem.substring(0, 5));
+      const destinoPrefix = parseInt(cepDestino.substring(0, 5));
+      const diff = Math.abs(origemPrefix - destinoPrefix);
+
+      let valor = 0;
+      let prazo = 0;
+
+      if (diff <= 100) {
+        valor = 20;
+        prazo = 3;
+      } else if (diff <= 400) {
+        valor = 30;
+        prazo = 5;
+      } else {
+        valor = 45;
+        prazo = 7;
+      }
+
+      document.getElementById("resultadoFrete").innerHTML =
+        `<p><strong>Valor estimado do frete (PAC):</strong> R$ ${valor.toFixed(2)}</p>
+         <p><strong>Prazo estimado de entrega:</strong> ${prazo} dias úteis</p>`;
+    }
+
+    function calcularFreteUber() {
+      window.open("https://www.uber.com/br/pt/price-estimate/", "_blank");
+    }
+
+    function atualizarEnderecoUber() {
+      const lojaSelecionada = document.getElementById("lojaSelector").value;
+      const endereco = lojaSelecionada === "loja1"
+        ? "Av. Ernani Cardoso 91, Cascadura - RJ"
+        : "Rua Itororó 22, Teófilo Cunha - RJ";
+
+      document.getElementById("enderecoUber").textContent = endereco;
+    }
+
+    window.onload = () => {
+      carregarProduto();
+      atualizarEnderecoUber();
+      document.getElementById("lojaSelector").addEventListener("change", atualizarEnderecoUber);
+    };
+  </script>
+</body>
+</html>
