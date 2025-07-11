@@ -86,6 +86,11 @@
       document.getElementById(id).style.display = 'block';
       document.getElementById('inicio').scrollIntoView({ behavior: 'smooth' });
     }
+    window.addEventListener('load', () => {
+    document.querySelectorAll('.item, .item-trabalho').forEach(el => {
+      el.style.opacity = '1';
+    });
+    });
   </script>
 </body>
 </html>
