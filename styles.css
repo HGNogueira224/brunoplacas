@@ -347,6 +347,13 @@ footer {
 .item-trabalho:nth-child(1) { animation-delay: 0.5s; }
 .item-trabalho:nth-child(2) { animation-delay: 0.6s; }
 
+.nome-produto {
+  text-align: center;
+  color: #0066cc;
+  font-weight: bold;
+  margin: 5px 0 15px 0;
+}
+
 @media (max-width: 768px) {
   header {
     padding: 10px;
